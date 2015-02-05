@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Bins {
     // all possible algorithms to compare --- add new instances here!
-    private static WorstFitAlgorithm algortihmsToCompare[] = { 
+    private static Algorithm algortihmsToCompare[] = { 
         new WorstFitAlgorithm(),
         new WorstFitDecreasingAlgorithm()
     };
@@ -47,12 +47,9 @@ public class Bins {
     public static void main (String args[]) {
         Bins b = new Bins();
         try {
-            Scanner input = new Scanner(new File(args[0]));
-            List<Integer> data = b.readData(input);
-            int total = b.getTotal(data);
-            System.out.println("total size = " + total / 1000000.0 + "GB");
-
-            for (WorstFitAlgorithm al : algortihmsToCompare) {
+            List<Integer> data = b.readData(new Scanner(new File(args[0])));
+            System.out.println("total size = " + b.getTotal(data) / 1000000.0 + "GB");
+            for (Algorithm al : algortihmsToCompare) {
                 al.fitDisksAndPrint(data);
             }
         }
